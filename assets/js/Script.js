@@ -51,6 +51,7 @@ function textLocal() {
             localStorage.setItem('textarea', textarea.value) :
             textarea.value = localStorage.getItem('textarea')
 
+            voiceList.value = localStorage.getItem('voiceList') 
         }else{
             localStorage.setItem('localBtn', 'false')
         }
@@ -63,6 +64,7 @@ function textLocal() {
         }
     })
     
+        // put the value in storage when adding text
     voiceList.addEventListener('input', () => {
         if ( localBtn.checked == true){
             localStorage.setItem('voiceList', voiceList.value)
@@ -73,17 +75,7 @@ function textLocal() {
     if (localStorage.getItem("localBtn") == 'true') {
         localBtn.checked = true
         textarea.value = localStorage.getItem('textarea')
-
-        document.addEventListener('laod', () => {
-            voiceList.value = localStorage.getItem('voiceList') 
-        })
-        setTimeout(() => {
-        },250)
     }
 }
 
 textLocal()
-
-setTimeout(() =>{
-    console.log(voiceList.value)
-}, 500)
