@@ -4,8 +4,7 @@ voiceList = document. querySelector ("select"),
 speechBtn = document. querySelector ("button")
 
 let 
-synth = speechSynthesis,
-isSpeaking = true
+synth = speechSynthesis
 
 voices();
 
@@ -35,31 +34,56 @@ speechBtn.addEventListener("click", e =>{
         if(!synth.speaking){
             textToSpeech(textarea.value);
         }
-        if(textarea.value.length > 80){
-            setInterval(()=>{
-                if(!synth.speaking && !isSpeaking){
-                    isSpeaking = true;
-                }else{
-                }
-            }, 500);
-            if(isSpeaking){
-                synth.resume();
-                isSpeaking = false;
-            }else{
-                synth.pause();
-                isSpeaking = true;
-            }
-        }
     }
 })
 
-textarea.addEventListener("input", () => {
-    localStorage.setItem('textarea',textarea.value)
-});
+const localBtn = document.querySelector("label:nth-of-type(1) > input")
 
 function textLocal() {
-    text = localStorage.getItem('textarea');
-    textarea.value = text
+
+    // when btn checked add true and textarea in storage if not empty
+    // and false when not uncheck
+    localBtn?.addEventListener('input', () => {
+        if (localBtn.checked == true) {
+            localStorage.setItem('localBtn', 'true')
+    
+            textarea.value != false ? 
+            localStorage.setItem('textarea', textarea.value) :
+            textarea.value = localStorage.getItem('textarea')
+
+        }else{
+            localStorage.setItem('localBtn', 'false')
+        }
+    })
+
+        // put the value in storage when adding text
+    textarea.addEventListener('input', () => {
+        if (localBtn.checked == true){
+            localStorage.setItem('textarea', textarea.value)
+        }
+    })
+    
+    voiceList.addEventListener('input', () => {
+        if ( localBtn.checked == true){
+            localStorage.setItem('voiceList', voiceList.value)
+        }
+    })
+
+        // check if input is checked put the value 
+    if (localStorage.getItem("localBtn") == 'true') {
+        localBtn.checked = true
+        textarea.value = localStorage.getItem('textarea')
+
+        document.addEventListener('laod', () => {
+            voiceList.value = localStorage.getItem('voiceList') 
+        })
+        setTimeout(() => {
+        },250)
+    }
 }
 
 textLocal()
+
+setTimeout(() =>{
+    console.log(voiceList.value)
+}, 500)
