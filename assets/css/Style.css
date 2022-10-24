@@ -10,7 +10,7 @@
 }
 
 body{
-  --bg: #7E6B8F;
+  --bg: #a2cec8;
   background: var(--bg);
   --color: #000c;
   color: var(--color);
@@ -27,6 +27,7 @@ main {
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
+  margin: 1rem;
   gap: 1rem ;
   background: #fffe;
   box-shadow: #0002 0 0 1rem;
@@ -80,16 +81,21 @@ button {
   align-self: center;
   padding: .5rem .5rem .2rem;
   border-radius: .125rem;
+  opacity: .4;
+  transition: all .2s ease;
+}
+
+:has(textarea:valid) button {
+  opacity: .75;
 }
 
 button > svg {
-  opacity: .8;
   color: #fff !important;
 }
           /* Responsive */
 
 @media screen and (hover: hover) {
-  is:(select, option, label:last-of-type){
+  select, option, label:last-of-type {
     display: unset;
   }
 }

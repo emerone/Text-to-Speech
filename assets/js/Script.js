@@ -51,5 +51,15 @@ speechBtn.addEventListener("click", e =>{
             }
         }
     }
+})
+
+textarea.addEventListener("input", () => {
+    localStorage.setItem('textarea',textarea.value)
 });
 
+function textLocal() {
+    text = localStorage.getItem('textarea');
+    textarea.value = text
+}
+
+textLocal()
