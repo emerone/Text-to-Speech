@@ -37,6 +37,8 @@ speechBtn.addEventListener("click", e =>{
     }
 })
 
+    // local storage
+
 const localBtn = document.querySelector("label:nth-of-type(1) > input")
 
 function textLocal() {
